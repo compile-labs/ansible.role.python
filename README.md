@@ -1,6 +1,11 @@
 # Ansible Role Python
 
+An Ansible role for installing the Python programming language. (pip, virtualenv)
 
+## Role Variables
+
+- `python_version` - Python version
+- `python_development` - Python development version (default: `False`)
 
 ## Packages
 | Package | Description | Status | Apt | Yum | Homebrew |
