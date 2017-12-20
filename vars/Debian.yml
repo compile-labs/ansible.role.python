@@ -24,7 +24,6 @@
     - pandas
     - scipy
     - shapely
-    - django
     - pyshp
     - geopy
     - pyproj
@@ -51,3 +50,12 @@
     - pep8
     - virtualenv
     - virtualenvwrapper
+
+    - jmespath
+    - credstash
+    - docopts
+    - pyspf
+    - pydns
+    - Jinja2
+    - keyring
+    - pyOpenSSL # rm -rf /usr/lib/python2.7/dist-packages/OpenSSL && rm -rf /usr/lib/python2.7/dist-packages/pyOpenSSL-0.15.1.egg-info && sudo pip install pyopenssl

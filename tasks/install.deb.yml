@@ -7,16 +7,16 @@
 
 #################### Install Python Core Packages ####################
 
-  - include: jobs/update.apt.yml
+  - include_tasks: jobs/update.apt.yml
 
-  - name: Python2 | Make sure that Python2 packages are installed (Debian)
+  - name: Python2 | Make sure that Python packages are installed (Debian)
     apt:
       pkg: "{{item}}"
       state: present
     with_items: "{{ python_apt_common_packages }}"
     when: python_install_2 and ansible_os_family == "Debian"
 
-  - include: jobs/update.apt.yml
+  - include_tasks: jobs/update.apt.yml
 
   - name: Python2 | Make sure that Python2 packages are installed (Debian)
     apt:
@@ -25,7 +25,7 @@
     with_items: "{{ python_apt_packages_2 }}"
     when: python_install_2 and ansible_os_family == "Debian"
 
-  - include: jobs/update.apt.yml
+  - include_tasks: jobs/update.apt.yml
 
   - name: Python3 | Make sure that Python3 packages are installed (Debian)
     apt:
@@ -34,7 +34,7 @@
     with_items: "{{ python_apt_packages_3 }}"
     when: python_install_3 and ansible_os_family == "Debian"
 
-  - include: jobs/update.apt.yml
+  - include_tasks: jobs/update.apt.yml
 
 #################### Install Python Pip & Pip3 Packages ####################
 
@@ -66,33 +66,6 @@
 
 ####################  Install Python virtualenv  ######################
 
-#  - name: python | virtualenv | install virtualenv
-#    pip:
-#      name: "virtualenv{% if python_virtualenv_version is defined %}=={{python_virtualenv_version}}{% endif %}"
-#      state: present
+  - name: Install virtualenv
+    pip: name=virtualenv version="{{ virtualenv_version }}" state=present
 
-#- name: Install pip with easy_install
-#  become: true
-#  become_method: sudo
-#  easy_install:
-#    name: pip
-
-  - name: Install common pip packages
-    become: true
-    become_method: sudo
-    pip:
-      name: "{{ item.name }}"
-      extra_args: "{{ item.extra_args | default() }}"
-      state: present
-    with_items:
-      - { name: 'boto' }
-      - { name: 'jmespath' }
-      - { name: 'PyYAML' }
-      - { name: 'credstash' }
-      - { name: 'docopts' }
-      - { name: 'pyspf' }
-      - { name: 'pydns' }
-      - { name: 'Jinja2' }
-      #- { name: 'skew' }
-      - { name: 'keyring' }
-#- { name: 'python-ldap', extra_args: "--global-option=build_ext --global-option=\"-I$(xcrun --show-sdk-path)/usr/include/sasl\"" }
