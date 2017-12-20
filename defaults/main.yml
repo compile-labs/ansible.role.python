@@ -10,6 +10,7 @@
   python_update_setuptools: no
   python_install_virtualenv: no
   python_pip_executable:
-  # python_pip_version:           # default to latest
+
+  python_pip_version: "9.0.*" # default to latest
   # python_setuptools_version:    # default to latest
   # python_virtualenv_version:    # default to latest
